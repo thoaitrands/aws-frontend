@@ -1,6 +1,27 @@
 version: '3.8'
+
 services:
-  angular-app:
-    build: .
+  frontend:
+    image: thoaitrands/aws-frontend:0.0.1
+    environment:
+      - BASE_URL=http://backend:8080/api/posts
     ports:
-      - "4200:4200"
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - aws-training
+
+  backend:
+    image: thoaitrands/aws-backend:0.0.2
+    ports:
+      - "8080:8080"
+    networks:
+      - aws-training
+    environment:
+      - DATABASE_URL=jdbc:mysql://mysql-server:3306/testdb?allowPublicKeyRetrieval=true&useSSL=false
+
+networks:
+  aws-training:
+    external: true
+    name: "aws-training"
