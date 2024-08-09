@@ -10,8 +10,8 @@ WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
 
 # Set environment variables and run the script
-ENV BASE_URL=${BASE_URL}
-RUN ./set-env.sh
+# ENV BASE_URL=${BASE_URL}
+# RUN ./set-env.sh
 
 # Install all the dependencies
 RUN npm install
