@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // baseUrl: process.env["BASE_URL"] || 'http://localhost:8080/api/posts'
-  baseUrl: "http://backend:8080/api/posts"
+  baseUrl: 'http://localhost:8080/api/posts'
 };
 
 /*

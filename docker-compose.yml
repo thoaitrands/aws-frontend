@@ -2,10 +2,8 @@ version: '3.8'
 
 services:
   frontend:
-    image: thoaitrands/aws-frontend:0.0.2
+    build: .
     container_name: frontend
-    environment:
-      - BASE_URL=http://backend:8080/api/posts
     ports:
       - "80:80"
     depends_on:
@@ -14,13 +12,15 @@ services:
       - aws-training
 
   backend:
-    image: thoaitrands/aws-backend:0.0.2
+    build: ../aws-backend
     container_name: backend
     ports:
       - "8080:8080"
     networks:
       - aws-training
     environment:
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=mysql
       - DATABASE_URL=jdbc:mysql://mysql-server:3306/testdb?allowPublicKeyRetrieval=true&useSSL=false
 
 networks:
